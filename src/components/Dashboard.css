@@ -1,0 +1,25 @@
+/* StockChart.css */
+/* StockChart.css */
+
+/* Define styles for the chart container */
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #f0f0f0;
+}
+
+/* Define styles for the canvas element */
+.chart-canvas {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-color: black;
+    border-radius: 5px;
+}
+  
+.canvas {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
