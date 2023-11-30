@@ -1,0 +1,45 @@
+.review-page {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+  }
+  
+  header {
+    background: linear-gradient(20deg, #567ad7 5%, #83b7eb 35%);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 40px;
+  }
+  
+  .review-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 40px;
+  }
+  
+  .review {
+    background-color: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .review h2 {
+    color: #567ad7;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .review p {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .rating {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #f39c12;
+  }
+  

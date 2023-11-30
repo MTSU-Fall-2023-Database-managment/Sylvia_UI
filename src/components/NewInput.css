@@ -1,0 +1,58 @@
+/* Styles for the form container */
+.form-container {
+    max-width: 500px; /* Adjust the width as necessary */
+    margin: 2rem auto; /* Centers the form in the middle of the page */
+    padding: 1.5rem;
+    background-color: #ffffff; /* White background for contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* A subtle shadow for depth */
+    border-radius: 8px;
+  }
+  
+  /* Styles for each form field */
+  .form-field {
+    margin-bottom: 1rem;
+  }
+  
+  /* Styles for the label */
+  label {
+    display: block; /* Ensure the label appears above the input */
+    margin-bottom: 0.5rem;
+    color: #333333; /* Dark text for readability */
+    font-size: 1rem;
+  }
+  
+  /* Styles for the input */
+  input[type="text"],
+  input[type="number"] {
+    width: 50%; /* Make input full-width */
+    padding: 0.75rem;
+    border: 1px solid #cccccc; /* A light border */
+    border-radius: 4px; /* Match the rounded corners */
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Styles for the submit button */
+  button[type="submit"] {
+    background-color: #007bff; /* A blue that should match the navbar */
+    color: white; /* White text */
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer; /* Indicates that the button is clickable */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    margin-top: 15px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3; /* A darker blue on hover for interaction feedback */
+  }
+  
+  /* Ensure everything is styled with the box-sizing property */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
