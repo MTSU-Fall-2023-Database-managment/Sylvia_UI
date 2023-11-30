@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import './AlphaVantageOptions.css'; // Importing the CSS file
-import ApiOptions from './ApiOptions';
+// import axios from 'axios';
+import './AlphaVantageOptions.css';
 
 function AlphaVantageOptions({ onBackToMain }) {
     const [apiInfoVisible, setApiInfoVisible] = useState(false);
@@ -10,7 +9,7 @@ function AlphaVantageOptions({ onBackToMain }) {
 
     // const callAlphaVantageApi = async () => {
     //     try {
-    //         const response = await axios.get('/alphaVantage'); // Your backend API endpoint
+    //         const response = await axios.get('/alphaVantage'); // Our backend API endpoint
     //         setApiData(response.data);
     //         setApiInfoVisible(false);
     //     } catch (error) {
