@@ -4,12 +4,12 @@ We developed an application with the goal of pulling and analyzing stock data.
 
 <hr>
 
-In this project, we implement an API backend using .NET that works as a stand alone console application. As a reach goal we wanted to also implement an interactive frontend using React. 
+In this project, we implement an API backend using .NET that works as a stand alone console application. As a reach goal we wanted to also implement an interactive frontend using React connecting with Express.js.
 
 ## Key Features:
 
 - Add and Remove stock data easily into your database
-- View your current database data from a Dashboard with data filters
+- View your current database data from a Dashboard with date filters
 - Analyze your data with selected charts
 - View Real-Time News on Fiance
 
