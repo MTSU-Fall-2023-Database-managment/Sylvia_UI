@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# SYLVIA UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+We developed an application with the goal of pulling and analyzing stock data.
 
-## Available Scripts
+<hr>
 
-In the project directory, you can run:
+In this project, we implement an API backend using .NET that works as a stand alone console application. As a reach goal we wanted to also implement an interactive frontend using React connecting with Express.js.
 
-### `npm start`
+## Key Features:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Add and Remove stock data easily into your database
+- View your current database data from a Dashboard with date filters
+- Analyze your data with selected charts
+- View Real-Time News on Fiance
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Building the API
 
-### `npm test`
+To build the API open the Sylvia_API repo and follow that README.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Building the UI
 
-### `npm run build`
+The UI consists of running both the server and the application.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Running the Server
+Navigate to the server directory, open the terminal and run the command. node .\index.js
+This will start the server on a specified local port.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Running the UI Application Locally
+From the root directory, open the terminal and run the command. npm start
+This will run the application in your localhost.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Connecting to Database from UI
+In the index.js file on the server you will need to update the credentials to access the your database.
+Along with the STOCKAPI KEY.
 
-### `npm run eject`
+### APIs Used
+We are using the AlphaVantage API and the NEWS API.
+You will need to setup your own API on both of these sites linked here.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+[Alpha Vantage](https://www.alphavantage.co/)
+[NEWS API](https://newsapi.org/)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### How to use the UI
+You can request data from the Alpha Vantage by clicking the Get Data button in the Navbar and entering the stock data you are requesting. 
+This currently will give you the last 100 days of data.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+If you want view your stocks then go to the Dashboard Tab, and filter by stock and dates.
+When wanting to see all date avaliable just select the function.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Viewing Analytics
+Currently the Analytics tab only shows the past 30 days of a selected stock.
+This will show the Min and Max closing price, and the Min and Max Volume.
+Specifically in the chart, if you see a red datapoint, this represents that the day's volume was 2x greater than the previous day. If Volume is steady then datapoints will be Blue.
 
-## Learn More
+<hr>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## GitHub
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Sylvia App](https://github.com/gyaikhom/huffman)
