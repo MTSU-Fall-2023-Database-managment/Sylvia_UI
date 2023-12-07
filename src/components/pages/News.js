@@ -1,11 +1,11 @@
 import '../../App.css';
 import React from 'react';
-import Dashboard from '../Dashboard';
+import NewsArticles from '../NewsArticles.js'
 
 function News() {
   return (
     <>
-    <Dashboard/>
+    <NewsArticles/>
     </>
   );
 }

@@ -1,25 +1,106 @@
-/* StockChart.css */
-/* StockChart.css */
-
-/* Define styles for the chart container */
-.chart-container {
+.canvas {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    background-color: #f0f0f0;
-}
-
-/* Define styles for the canvas element */
-.chart-canvas {
-    background-color: white;
-    border: 1px solid #ccc;
-    border-color: black;
-    border-radius: 5px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+    width: 80%;
+    max-width: 1000px;
+    margin: auto;
 }
   
-.canvas {
-    justify-content: center;
-    align-items: center;
+canvas {
+    background-color: #fff;
+    border-radius: 4px;
+}
+  
+.chart-title {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+.stock-selector {
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 500px;
+    margin: auto;
+}
+
+.stock-selector label {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+
+.stock-selector select {
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+    .canvas, .stock-selector {
+      width: 95%;
+    }
+
+    .chart-title, 
+    .stock-selector label, 
+    .stock-selector select {
+      font-size: 14px;
+    }
+}
+
+.chart-highlights {
     display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.highlight-card {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    flex-basis: calc(25% - 20px);
+    text-align: center;
+    min-width: 150px;
+}
+
+.highlight-title {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.highlight-value {
+    font-size: 22px;
+    color: #0070c0;
+    font-weight: 500;
+}
+
+@media (max-width: 480px) {
+    .highlight-card {
+        flex-basis: 100%;
+    }
 }

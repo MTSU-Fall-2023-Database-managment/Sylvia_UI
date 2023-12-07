@@ -57,6 +57,13 @@ function Navbar() {
                                 Reviews
                             </Link>
                         </li>
+                        {!button && 
+                            <li>
+                                <Link to='/getdata' className='nav-links-mobile' onClick={closeMobileMenu}>
+                                    Get Data
+                                </Link>
+                            </li>
+                        }
                     </ul>
                     {button && <Button buttonStyle='btn--outline'>Get Data</Button>}
                 </div>

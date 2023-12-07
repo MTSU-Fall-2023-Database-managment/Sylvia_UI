@@ -54,7 +54,6 @@ function ReviewPage() {
           </p>
           <div className="rating">Rating: 4.7/5</div>
         </div>
-        {/* Add more reviews as needed */}
       </section>
     </div>
   );

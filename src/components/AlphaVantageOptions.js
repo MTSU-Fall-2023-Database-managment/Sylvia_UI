@@ -1,32 +1,92 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './AlphaVantageOptions.css';
 
 function AlphaVantageOptions({ onBackToMain }) {
+    const [apiOptions, setApiOptions] = useState(false);
     const [apiInfoVisible, setApiInfoVisible] = useState(false);
-    const [apiData, setApiData] = useState(null);
-    const [apiOptions, setApiOptions] = useState(null);
-
-    // const callAlphaVantageApi = async () => {
-    //     try {
-    //         const response = await axios.get('/alphaVantage'); // Our backend API endpoint
-    //         setApiData(response.data);
-    //         setApiInfoVisible(false);
-    //     } catch (error) {
-    //         console.error('Error calling AlphaVantage API', error);
-    //     }
-    // };
+    const [selectedTimeSeries, setSelectedTimeSeries] = useState(null);
+    const [timeInterval, setTimeInterval] = useState('');
+    const [stockSymbol, setStockSymbol] = useState('');
 
     const showApiOptions = () => {
         setApiOptions(!apiOptions);
         setApiInfoVisible(false);
-        setApiData(null);
+        setSelectedTimeSeries(null);
     };
 
     const showApiInformation = () => {
         setApiInfoVisible(!apiInfoVisible);
         setApiOptions(false);
-        setApiData(null);
+        setSelectedTimeSeries(null);
+    };
+
+    const handleTimeSeriesClick = (series) => {
+        setSelectedTimeSeries(series);
+        setApiOptions(false);
+    };
+
+    const handleAddStock = () => {
+        if (selectedTimeSeries === 'TIME_SERIES_INTRADAY' && !timeInterval) {
+            toast.warn("Please select a time interval for the Intraday data.");
+            return;
+        }
+
+        // Call the API with the selected time series, time interval (if applicable), and stock symbol
+        // Replace the URL and data payload as per your API's requirements
+        axios.post('http://localhost:3001/api/insertData', {
+            table: selectedTimeSeries,
+            data: {
+                symbol: stockSymbol,
+                // Include time interval in the data if it's for Intraday
+                ...(selectedTimeSeries === 'TIME_SERIES_INTRADAY' && { interval: timeInterval })
+            }
+        }).then(response => {
+            toast.success('Stock Data added:', response.data);
+            setStockSymbol('');
+            setTimeInterval('');
+        }).catch(error => {
+            console.error('Error adding stock data:', error);
+            toast.error('Error adding stock data');
+        }); 
+    };
+
+    const handleRemoveStock = async () => {
+        if (!stockSymbol) {
+            toast.warn("Please enter a stock symbol to remove.");
+            return;
+        }
+
+        try {
+            const response = await axios.post('http://localhost:3001/api/removeData', {
+                symbols: stockSymbol,
+                timeSeriesTable: mapTimeSeriesToTableName(selectedTimeSeries)
+            });
+
+            toast.success(`Stock removed: ${response.data}`);
+            setStockSymbol(''); // Clear the input field after removal
+        } catch (error) {
+            console.error('Error removing stock:', error);
+            toast.error('Error removing stock');
+        }
+    };
+    
+    // Helper function to map the selected time series to the corresponding table name
+    const mapTimeSeriesToTableName = (timeSeries) => {
+        switch (timeSeries) {
+            case 'TIME_SERIES_INTRADAY':
+                return 'rawintraday';
+            case 'TIME_SERIES_DAILY':
+                return 'rawdaily';
+            case 'TIME_SERIES_WEEKLY':
+                return 'rawweekly';
+            case 'TIME_SERIES_MONTHLY':
+                return 'rawmonthly';
+            default:
+                return null;
+        }
     };
 
     return (
@@ -38,21 +98,44 @@ function AlphaVantageOptions({ onBackToMain }) {
             </div>
             {apiOptions && (
                 <div className="apiInfo">
-                <div className="apiFunctions">
+                    <div className="apiFunctions">
+                        <h3>Select API Function:</h3>
+                        <button className="buttonStyle" onClick={() => handleTimeSeriesClick('TIME_SERIES_INTRADAY')}>1: TIME_SERIES_INTRADAY</button>
+                        <button className="buttonStyle" onClick={() => handleTimeSeriesClick('TIME_SERIES_DAILY')}>2: TIME_SERIES_DAILY</button>
+                        <button className="buttonStyle" onClick={() => handleTimeSeriesClick('TIME_SERIES_WEEKLY')}>3: TIME_SERIES_WEEKLY</button>
+                        <button className="buttonStyle" onClick={() => handleTimeSeriesClick('TIME_SERIES_MONTHLY')}>4: TIME_SERIES_MONTHLY</button>
+                    </div>
+                </div>
+            )}
 
-            <br></br>
-            <h3>Select API Function:</h3>
-            <br></br>
-            </div>
-            <div>
-            <button className="buttonStyle">1: TIME_SERIES_INTRADAY </button>
-            <button className="buttonStyle">2: TIME_SERIES_DAILY </button>
-            <button className="buttonStyle">3: TIME_SERIES_WEEKLY </button>
-            <button className="buttonStyle">4: TIME_SERIES_MONTHLY </button>
-        </div>
-            </div>
-)}
+            {selectedTimeSeries && (
+                <div>
+                    <h3>Selected API Function: {selectedTimeSeries}</h3>
+                    <div className="stockInputContainer">
+                        <input 
+                            type="text" 
+                            value={stockSymbol} 
+                            onChange={(e) => setStockSymbol(e.target.value)} 
+                            placeholder="Enter Stock Symbol" 
+                        />
+                        <button onClick={handleAddStock}>Add</button>
+                        <button onClick={handleRemoveStock}>Remove</button>
+                    </div>
+                </div>
+            )}
 
+            {selectedTimeSeries === 'TIME_SERIES_INTRADAY' && (
+                <div className="timeIntervalSelection">
+                    <select value={timeInterval} onChange={(e) => setTimeInterval(e.target.value)}>
+                        <option value="">Select Interval</option>
+                        <option value="1min">1min</option>
+                        <option value="5min">5min</option>
+                        <option value="15min">15min</option>
+                        <option value="30min">30min</option>
+                        <option value="60min">60min</option>
+                    </select>
+                </div>
+            )}
 
             {apiInfoVisible && (
                 <div className="apiInfo">
@@ -82,13 +165,14 @@ function AlphaVantageOptions({ onBackToMain }) {
             </div>
                 </div>
             )}
-
-            {apiData && (
+            
+            {/* {apiData && (           
                 <div className="apiData">
                     <h3>API Data</h3>
                     <pre>{JSON.stringify(apiData, null, 2)}</pre>
                 </div>
-            )}
+            )} */}
+            <ToastContainer position="top-center" />
         </div>
     );
 }
